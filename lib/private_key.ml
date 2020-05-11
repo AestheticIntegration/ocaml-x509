@@ -21,7 +21,7 @@ module Asn = struct
     let f (v, (n, (e, (d, (p, (q, (dp, (dq, (q', other))))))))) =
       match (v, other) with
       | (0, None) ->
-        begin match Rsa.priv ~e ~d ~n ~p ~q ~dp ~dq ~q' with
+        begin match Rsa.priv_of_primes ~e ~p ~q with
           | Ok p -> p
           | Error (`Msg m) -> parse_error "bad RSA private key %s" m
         end
